@@ -19,11 +19,11 @@ jobs:
                 fetch-depth: '0'
          - name: is belong to master
            run: |
-            if (git branch -r --contains "$GITHUB_SHA" --points-at origin/main) != '' ; then
-                echo "pass"
-            else
+            if [[ $(git branch -r --contains "$GITHUB_SHA" --points-at origin/main) ]] ; then
                 echo "failed"   
                 exit 1
+            else
+                echo "pass"
             fi
          - name: Dump GitHub context
            run: echo "$GITHUB_CONTEXT"

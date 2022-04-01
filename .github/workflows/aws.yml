@@ -12,7 +12,7 @@ jobs:
     environment: production
 
     steps:
-    - name: run
-      run: |
-
-        echo "$GITHUB_REF_NAME deplyment"
+         - name: Dump GitHub context
+           env:
+              GITHUB_CONTEXT: ${{ toJson(github) }}
+           run: echo "$GITHUB_CONTEXT"

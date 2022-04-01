@@ -3,13 +3,12 @@ name: Deploy to Vapor
 
 on:
   push:
-    branches:
-      - main
     tags: ['*']
 
 jobs:
   deploy:
     name: Deploy
+    if: github.event.base_ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: production
 

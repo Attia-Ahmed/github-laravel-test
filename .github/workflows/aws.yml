@@ -19,6 +19,7 @@ jobs:
                 fetch-depth: '0'
          - name: is belong to master
            run: |
+            echo $(git branch -r --contains "$GITHUB_SHA" --points-at origin/main);
             if [[ $(git branch -r --contains "$GITHUB_SHA" --points-at origin/main) ]] ; then
                 echo "failed"   
                 exit 1

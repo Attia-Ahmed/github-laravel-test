@@ -4,15 +4,13 @@ name: Deploy to Vapor
 on:
   push:
     tags:        
-      - v1.**
+      -**
 jobs:
   deploy:
     name: Deploy
+    if: github.event.base_ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: production
-
     steps:
          - name: Dump GitHub context
-           env:
-              GITHUB_CONTEXT: ${{ toJson(github) }}
-           run: echo "$GITHUB_CONTEXT"
+           run: echo "tag $GITHUB_REF_NAME	message ${{ github.message }}"

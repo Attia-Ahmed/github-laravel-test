@@ -8,12 +8,10 @@ on:
 jobs:
   deploy:
     name: Deploy
-    if: github.event.base_ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: production
     env:
-          MSG: ${{github.event.message }}
+           GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
-    
          - name: Dump GitHub context
-           run: echo "tag $GITHUB_REF_NAME	message $MSG"
+           run: echo "$GITHUB_CONTEXT"

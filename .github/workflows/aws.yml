@@ -3,10 +3,8 @@ name: Deploy to Vapor
 
 on:
   push:
-    tags:
-      - v**
-
-
+    tags:        
+      - v1.**
 jobs:
   deploy:
     name: Deploy

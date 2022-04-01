@@ -8,11 +8,19 @@ on:
 jobs:
   deploy:
     name: Deploy
-    if: $(git branch --contains "$GITHUB_SHA" --points-at "main" )
     runs-on: ubuntu-latest
     environment: production
     env:
            GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
+      
+         - name: is belong to master
+           run: |
+            if git branch --contains "$GITHUB_SHA" --points-at "main"; then
+                echo "pass"
+            else
+                echo "failed"   
+                exit 1
+            fi
          - name: Dump GitHub context
            run: echo "$GITHUB_CONTEXT"

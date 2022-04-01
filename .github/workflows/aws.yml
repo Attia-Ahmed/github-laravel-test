@@ -8,12 +8,12 @@ on:
 jobs:
   deploy:
     name: Deploy
+    if: steps.branch-name.outputs.current_branch == 'main'
     runs-on: ubuntu-latest
     environment: production
     env:
            GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
-      
          - name: is belong to master
            run: |
             if git branch --contains "$GITHUB_SHA" --points-at "main"; then

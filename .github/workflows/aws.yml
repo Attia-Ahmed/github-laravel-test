@@ -14,7 +14,10 @@ jobs:
     env:
            GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
-         - uses: actions/checkout@v3
+         - name: Git checkout
+           uses: actions/checkout@v2
+           with:
+                fetch-depth: '0'
          - name: is belong to master
            run: |
             if git branch --contains "$GITHUB_SHA" --points-at "main"; then

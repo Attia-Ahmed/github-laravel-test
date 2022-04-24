@@ -14,6 +14,9 @@ jobs:
            GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
          - name: Git checkout
+           run: |
+            echo $GITHUB_WORKSPACE
+         - name: Git checkout
            uses: actions/checkout@v2
            with:
                 fetch-depth: '0'
